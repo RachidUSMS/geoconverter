@@ -8,5 +8,5 @@ idna==3.8
 multidict==6.0.5
 yarl==1.9.8
 flask==2.3.3
-pandas==2.1.0
+pandas==2.0.3
 numpy==1.24.3
