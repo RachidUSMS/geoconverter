@@ -8,6 +8,7 @@
         /* Center the content */
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -48,6 +49,15 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        /* Style the copyright */
+        .footer {
+            margin-top: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -56,5 +66,10 @@
         <input type="file" name="file" accept=".csv">
         <input type="submit" value="Convert">
     </form>
+
+    <!-- Copyright section -->
+    <div class="footer">
+        &copy; 2024 Bacha_Dev
+    </div>
 </body>
 </html>
