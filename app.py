@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, url_for, send_file, render_template
 import pandas as pd
 import geopandas as gpd
 import os
+import shutil
 
 app = Flask(__name__)
 
@@ -37,10 +38,19 @@ def convert_file():
         data = pd.read_csv(filepath)
         gdf = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data['X1'], data['Y1']))
         
-        output_shp = os.path.join(app.config['OUTPUT_FOLDER'], file.filename.replace('.csv', '.shp'))
-        gdf.to_file(output_shp)
+        output_filename = file.filename.replace('.csv', '')
+        output_folder = os.path.join(app.config['OUTPUT_FOLDER'], output_filename)
+        os.makedirs(output_folder, exist_ok=True)
         
-        return send_file(output_shp, as_attachment=True)
+        # Save the shapefile (generates .shp, .shx, .dbf, and .cpg files)
+        gdf.to_file(os.path.join(output_folder, output_filename + '.shp'))
+        
+        # Zip the files
+        output_zip = os.path.join(app.config['OUTPUT_FOLDER'], output_filename + '.zip')
+        shutil.make_archive(output_filename, 'zip', output_folder)
+
+        # Send the zip file as the response
+        return send_file(output_zip, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
