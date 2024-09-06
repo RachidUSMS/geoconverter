@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV to SHP Converter</title>
+    <style>
+        /* Center the content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('background-image.jpg'); /* Add your background image here */
+            background-size: cover; /* Cover the entire screen */
+            background-position: center;
+        }
+
+        /* Style the form and content */
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload CSV File to Convert to Shapefile</h1>
     <form action="/convert" method="post" enctype="multipart/form-data">
+        <h1>Upload CSV File to Convert to Shapefile</h1>
         <input type="file" name="file" accept=".csv">
         <input type="submit" value="Convert">
     </form>
